@@ -11,7 +11,7 @@ def median(values):
     return values[int(len(values) / 2)]
 
 median_pos = median(positions)
-avg_pos = int(sum(positions) / len(positions)) + 1
+avg_pos = int(sum(positions) / len(positions))
 
 #print(f'average {avg_pos}, median {median_pos}')
 
@@ -31,8 +31,12 @@ def sum_fuel(positions, target, constant):
 print('Day 1 : ', sum_fuel(positions, median_pos, True))
 
 # best position is surely between average and median values
-fuel_values = []
-for pos in range(min([median_pos, avg_pos]), max([median_pos, avg_pos]) + 1):
-    fuel_values.append(sum_fuel(positions, pos, False))
+#fuel_values = []
+#for pos in range(min([median_pos, avg_pos]), max([median_pos, avg_pos]) + 1):
+#    fuel_values.append(sum_fuel(positions, pos, False))
+#
+#print(f'Day 2 : ', int(min(fuel_values)))
 
-print(f'Day 2 : ', int(min(fuel_values)))
+# actually it should be average value, but I'm not sure my average calculation is quite right
+# test input needs average + 1 to work, whereas my input does not ; WTF ?
+print('Day 2 : ', int(min([sum_fuel(positions, avg_pos, False), sum_fuel(positions, avg_pos + 1, False)])))
